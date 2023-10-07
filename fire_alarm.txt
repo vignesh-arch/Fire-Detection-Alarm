@@ -1,0 +1,25 @@
+#include<ESP8266WiFi.h>
+#define BUZZER D0
+#define LED D1
+#define SENSOR A0
+void setup() {
+  Serial.begin(115200);
+  pinMode(BUZZER,OUTPUT);
+  pinMode(LED,OUTPUT);
+  pinMode(SENSOR,INPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  int flameRate=analogRead(SENSOR);
+  Serial.println("flame rate is :");
+  Serial.print(flameRate);
+  if(flameRate<=84){
+    digitalWrite(LED,HIGH);
+    digitalWrite(BUZZER,HIGH);
+  }
+  else{
+    digitalWrite(LED,LOW);
+    digitalWrite(BUZZER,LOW);
+  }
+}
